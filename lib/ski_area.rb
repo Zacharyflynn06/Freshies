@@ -1,0 +1,3 @@
+class Freshies::SkiArea
+
+end
