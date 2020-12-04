@@ -1,6 +1,11 @@
 require 'pry'
 require 'net/http'
 require 'open-uri'
+require 'json'
+require 'dotenv/load'
+require 'awesome_print'
 
-
-require_all 'lib'
+require_relative '../lib/modules/freshies'
+require_relative '../lib/api'
+require_relative '../lib/cli'
+require_relative '../lib/ski_area'

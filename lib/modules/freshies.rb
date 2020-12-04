@@ -1,0 +1,2 @@
+module Freshies
+end

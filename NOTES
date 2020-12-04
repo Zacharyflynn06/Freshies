@@ -1,0 +1,19 @@
+
+User selects CO ski-area from list
+-1. Breckenridge (80424)
+-2. Telluride (81435)
+-3. Keystone (80435)
+-4. Crested Butte (81224)
+-5. Vail (81657)
+-6. Aspen (81611)
+-7. Steamboat (80477)
+-8. Copper (80443)
+-9. Winter Park (80482)
+-10. Beaver Creak (81620)
+
+Returns 
+-previous 5 day snow accumulation
+-3 day forcast
+-current conditions
+
+Asks if User wants to check another city?

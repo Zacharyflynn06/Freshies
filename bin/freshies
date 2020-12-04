@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require_reletive "../config/environment.rb"
+require_relative "../config/environment.rb"
 
+puts "hello"
 
-#Freshies::CLI.new.run
+Freshies::API.new(80424).fetch
