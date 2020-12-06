@@ -24,4 +24,8 @@ class Freshies::Current
         @@all
     end
 
+    def self.delete_all
+        @@all.clear
+    end
+
 end
