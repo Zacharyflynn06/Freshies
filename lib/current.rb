@@ -1,21 +1,19 @@
 class Freshies::Current
 
-    attr_reader :name, :temp, :feels_like, :conditions, :sky
+    attr_reader :time, :name, :temp, :feels_like, :conditions
 
     @@all = []
 
-    def initialize(date, name, temp, feels_like, conditions, sky)
-        @date = Time.at(date).strftime('%Y-%m-%d %I:%M %p')
+    def initialize(time, name, temp, feels_like, conditions)
+        @time = Time.at(time).strftime('%Y-%m-%d %I:%M %p')
         @name = name
         @temp = temp
         @feels_like = feels_like
         @conditions = conditions
-        @sky = sky
         save
     end
 
     def print
-
         puts "Today in #{@name}"
         sleep(2)
         puts "-----------------------------------------------"
@@ -27,7 +25,7 @@ class Freshies::Current
         sleep(2)
         puts "-----------------------------------------------"
         sleep(2)
-        puts "There is a #{@sky}, and #{@conditions} conditions."
+        puts "There is currently #{@conditions} conditions."
         puts "-----------------------------------------------"
     end
 

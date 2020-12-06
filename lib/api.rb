@@ -1,36 +1,42 @@
 class Freshies::API
-    INITIAL_URL = "http://api.openweathermap.org/data/2.5/weather?"
+    INITIAL_URL = "http://api.openweathermap.org/data/2.5/onecall?"
 
-    def forecast(name, zipcode)
+    def forecast(name, lat, lon)
         @name = name
-        forecast_uri = forecast_uri_for(zipcode)
-        response = Net::HTTP.get_response(forecast_uri)
+        uri = forecast_uri_for(lat, lon)
+        response = Net::HTTP.get_response(uri)
         data = JSON.parse(response.body)
-        create_new_forecast(data)
-        binding.pry
+
+        # binding.pry
+        create_new_current(data)
+
     end
 
-    def create_new_forecast(data)
-        Freshies::Current.new(
-            data["dt"], #date
-            @name, #name attribute
-            data["main"]["temp"], #temperature attribute
-            data["main"]["feels_like"], #feels like
-            data["weather"][0]["main"], #conditions
-            data["weather"][0]["description"] #sky
-        )
-    end
-
-    def forecast_uri_for(zipcode)
+    def forecast_uri_for(lat, lon)
         parameters = {
             units: "imperial",
             appid: "#{ENV['API_KEY']}",
-            zip: zipcode,
+            lat: lat,
+            lon: lon,
+            exclude: "minutely"
         }
         uri = URI(INITIAL_URL)
         uri.query = URI.encode_www_form(parameters)
         uri
+
+        # binding.pry
     end
+
+    def create_new_current(data)
+        Freshies::Current.new(
+            data["current"]["dt"], #date
+            @name, #name attribute
+            data["current"]["temp"], #temperature attribute
+            data["current"]["feels_like"], #feels like
+            data["current"]["weather"][0]["main"], #conditions
+        )
+    end
+
 end
 
 

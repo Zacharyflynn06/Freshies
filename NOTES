@@ -12,9 +12,9 @@ User selects CO ski-area from list
 -10. Beaver Creak (81620)
 
 Returns 
--previous 5 day snow accumulation
--4 day forecast
 -current conditions
+-48 hour forecast
+-
 
 Asks if User wants to check another city?
 
