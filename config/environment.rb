@@ -4,6 +4,7 @@ require 'open-uri'
 require 'json'
 require 'dotenv/load'
 require 'awesome_print'
+require 'tty-prompt'
 
 require_relative '../lib/modules/freshies'
 require_relative '../lib/api'

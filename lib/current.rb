@@ -4,10 +4,8 @@ class Freshies::Current
 
     @@all = []
 
-    def initialize(name, temp, feels_like, conditions, sky)
-        # attributes.each do |k,v|
-        #     self.class.attr_reader(k)
-        # end
+    def initialize(date, name, temp, feels_like, conditions, sky)
+        @date = Time.at(date).strftime('%Y-%m-%d %I:%M %p')
         @name = name
         @temp = temp
         @feels_like = feels_like

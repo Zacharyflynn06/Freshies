@@ -6,6 +6,7 @@ class Freshies::API
         response = Net::HTTP.get_response(uri)
         data = JSON.parse(response.body)
         Freshies::Current.new(
+            data["dt"], #date
             data["name"], #name attribute
             data["main"]["temp"], #temperature attribute
             data["main"]["feels_like"], #feels like

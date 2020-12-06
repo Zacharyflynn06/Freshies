@@ -15,11 +15,12 @@ class Freshies::CLI
 
     def self.fetch_all
         @zips.each do |zip|
-        Freshies::API.new(zip)
-        puts "hello"
-    end
+            Freshies::API.new(zip)
+            puts "hello"
 
-    binding.pry
+        end
+        binding.pry
+    end
 end
 
 #  def run 
@@ -41,4 +42,4 @@ end
 
     # def goodbye
     #     puts "Enjoy the Freshies!"
- end
+ 

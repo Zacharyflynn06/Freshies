@@ -17,15 +17,3 @@ Returns
 -current conditions
 
 Asks if User wants to check another city?
-
-
-Accumulated API = http://history.openweathermap.org/data/2.5/history/accumulated_precipitation?
-Current Weather API = api.openweathermap.org/data/2.5/weather?
-4 day forecast API = 
-
-ONE CALL API - currentm minute, hourly and daily forecast
-    -https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={API key}
-ONE CALL API - historical 5 day
-    -"https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=39.4803&lon=106.0667&dt=#{Time.now.to_i}&appid=c6844bf64f629ac239ef509eaf7e12c3"
-
-breck example "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=39.4803&lon=106.0667&dt={time}&appid=c6844bf64f629ac239ef509eaf7e12c3"
