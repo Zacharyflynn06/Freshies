@@ -8,5 +8,5 @@ require 'tty-prompt'
 
 require_relative '../lib/modules/freshies'
 require_relative '../lib/api'
-require_relative '../lib/cli'
 require_relative '../lib/current'
+require_relative '../lib/cli'

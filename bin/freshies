@@ -2,6 +2,4 @@
 
 require_relative "../config/environment.rb"
 
-puts "hello"
-
-Freshies::CLI.fetch_all
+Freshies::CLI.new.run
