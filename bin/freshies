@@ -4,4 +4,4 @@ require_relative "../config/environment.rb"
 
 puts "hello"
 
-Freshies::API.new(80424).fetch
+Freshies::CLI.fetch_all

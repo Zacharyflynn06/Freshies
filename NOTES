@@ -1,6 +1,6 @@
 
 User selects CO ski-area from list
--1. Breckenridge (80424)
+-1. Breckenridge (80424), 39.4803° N, 106.0667° W
 -2. Telluride (81435)
 -3. Keystone (80435)
 -4. Crested Butte (81224)
@@ -13,7 +13,19 @@ User selects CO ski-area from list
 
 Returns 
 -previous 5 day snow accumulation
--3 day forcast
+-4 day forecast
 -current conditions
 
 Asks if User wants to check another city?
+
+
+Accumulated API = http://history.openweathermap.org/data/2.5/history/accumulated_precipitation?
+Current Weather API = api.openweathermap.org/data/2.5/weather?
+4 day forecast API = 
+
+ONE CALL API - currentm minute, hourly and daily forecast
+    -https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={API key}
+ONE CALL API - historical 5 day
+    -"https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=39.4803&lon=106.0667&dt=#{Time.now.to_i}&appid=c6844bf64f629ac239ef509eaf7e12c3"
+
+breck example "https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=39.4803&lon=106.0667&dt={time}&appid=c6844bf64f629ac239ef509eaf7e12c3"
