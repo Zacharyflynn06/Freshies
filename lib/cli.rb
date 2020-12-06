@@ -44,13 +44,23 @@ class Freshies::CLI
                     "Copper",
                     "Winter Park",
                     "Beaver Creak"
-    ]
+                    ]
         
 
         input = $prompt.select("Which Ski Area Do You Want To Check?", locations, cycle: true)
 
+        # while input != "exit"
+
         if input = "Breckenridge"
-            
+           new_instance = Freshies::API.new.forecast("Breckenridge", 80424)
+           new_instance.print
+           
+
+
+        elsif input = "Telluride"
+            Freshies::API.new("Telluride", 81435)
+        elsif input = "Keystone"
+            Freshies::API.new("Keystone", 80435)
         end
 
 

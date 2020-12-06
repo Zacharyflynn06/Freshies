@@ -1,6 +1,6 @@
 class Freshies::Current
 
-    attr_reader :name, :temp, :conditions
+    attr_reader :name, :temp, :feels_like, :conditions, :sky
 
     @@all = []
 
@@ -12,6 +12,23 @@ class Freshies::Current
         @conditions = conditions
         @sky = sky
         save
+    end
+
+    def print
+
+        puts "Today in #{@name}"
+        sleep(2)
+        puts "-----------------------------------------------"
+        sleep(2)
+        puts "The current temperature in #{@name} is #{@temp}°F"
+        sleep(2)
+        puts "-----------------------------------------------"
+        puts "with windchill, it feels like #{@feels_like}°F"
+        sleep(2)
+        puts "-----------------------------------------------"
+        sleep(2)
+        puts "There is a #{@sky}, and #{@conditions} conditions."
+        puts "-----------------------------------------------"
     end
 
     def save
