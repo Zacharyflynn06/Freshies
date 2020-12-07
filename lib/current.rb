@@ -1,31 +1,31 @@
 class Freshies::Current
 
-    attr_reader :time, :name, :temp, :feels_like, :conditions
+    # attr_reader :time, :name, :temp, :feels_like, :conditions
 
     @@all = []
 
-    def initialize(time, name, temp, feels_like, conditions)
-        @time = Time.at(time).strftime('%Y-%m-%d %I:%M %p')
+    def initialize(name, current_hash)
         @name = name
-        @temp = temp
-        @feels_like = feels_like
-        @conditions = conditions
+        @conditions = current_hash["weather"][0]["main"]
+        current_hash.each do |key, value|
+            self.class.attr_accessor(key)
+            self.send(("#{key}="), value)
+        end
+        @time = Time.at(@dt).strftime('%I:%M %p')
         save
     end
 
     def print
-        puts "Today in #{@name}"
-        sleep(2)
         puts "-----------------------------------------------"
-        sleep(2)
+        puts "Today in #{@name} at #{@time}"
+        puts "-----------------------------------------------"
         puts "The current temperature in #{@name} is #{@temp}°F"
-        sleep(2)
+        puts "With windchill, it feels like #{@feels_like}°F"
+        puts "There is #{@humidity}% humidity."
         puts "-----------------------------------------------"
-        puts "with windchill, it feels like #{@feels_like}°F"
-        sleep(2)
-        puts "-----------------------------------------------"
-        sleep(2)
         puts "There is currently #{@conditions} conditions."
+        puts "The visibility is #{@visibility}m"
+        puts "The wind is blowing #{@wind_speed}mph"
         puts "-----------------------------------------------"
     end
 

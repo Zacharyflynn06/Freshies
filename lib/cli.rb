@@ -52,13 +52,17 @@ class Freshies::CLI
         # while input != "exit"
 
         if input == "Breckenridge"
-           new_instance = Freshies::API.new.forecast("Breckenridge", 39.4803, -106.066)
-           new_instance.print
-           
+            x = Freshies::API.new.forecast("Breckenridge", 39.4803, -106.066)
+            x.print   
         elsif input == "Telluride"
-            Freshies::API.new("Telluride", 81435)
+            x = Freshies::API.new.forecast("Telluride", 37.9363, -107.8466)
+            x.print
         elsif input ==  "Keystone"
-            Freshies::API.new("Keystone", 80435)
+            x = Freshies::API.new.forecast("Keystone", 39.6084, -105.9437)
+            x.print
+        elsif input ==  "Crested Butte"
+            x = Freshies::API.new.forecast("Crested Butte", 38.8697, -106.9878)
+            x.print
         end
 
 

@@ -9,6 +9,7 @@ class Freshies::API
 
         # binding.pry
         create_new_current(data)
+        # create_new_future(data)
 
     end
 
@@ -28,14 +29,29 @@ class Freshies::API
     end
 
     def create_new_current(data)
-        Freshies::Current.new(
-            data["current"]["dt"], #date
-            @name, #name attribute
-            data["current"]["temp"], #temperature attribute
-            data["current"]["feels_like"], #feels like
-            data["current"]["weather"][0]["main"], #conditions
-        )
+
+        current_hash = data["current"]
+        Freshies::Current.new(@name, current_hash)
+            # data["current"]["dt"], #time in unix
+            # @name,                   #name attribute
+            # data["current"]["temp"], #temperature attribute
+            # data["current"]["feels_like"], #feels like
+            # data["current"]["weather"][0]["main"], #conditions
     end
+
+    # def create_new_future(data)
+
+    #     attributes= []
+
+    #     data["daily"].each do |i|
+
+
+    #     end
+
+    #     binding.pry
+
+    #     # Freshies:Future.new(attributes)
+    # end
 
 end
 
