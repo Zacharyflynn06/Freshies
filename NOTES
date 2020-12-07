@@ -26,3 +26,8 @@ Lets check all the resorts
 outputs all the data in a table
 
 Resort Date Temp Conditions 
+
+
+
+
+data["daily"][0]["dt"]

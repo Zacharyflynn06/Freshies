@@ -24,9 +24,18 @@ class Freshies::Current
         puts "There is #{@humidity}% humidity."
         puts "-----------------------------------------------"
         puts "There is currently #{@conditions} conditions."
-        puts "The visibility is #{@visibility}m"
+        puts "The visibility is #{@visibility}m, with a UV index of #{@uvi}"
         puts "The wind is blowing #{@wind_speed}mph"
         puts "-----------------------------------------------"
+        if @conditions == "Snow"
+            puts "-----------------------------------------------"
+            puts "YOU FOUND THE FRESHIES!!!"
+            puts "-----------------------------------------------"
+        else
+            puts "-----------------------------------------------"
+            puts "NO FRESHIES TODAY"
+            puts "-----------------------------------------------"
+        end
     end
 
     def save
