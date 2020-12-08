@@ -14,20 +14,50 @@ User selects CO ski-area from list
 Returns 
 -current conditions
 -48 hour forecast
--
-
-Asks if User wants to check another city?
-
-
-Needs to be robust, and return
-
-Lets check all the resorts
-
-outputs all the data in a table
-
-Resort Date Temp Conditions 
-
-
 
 
 data["daily"][0]["dt"]
+
+
+ask about future class
+
+ask how to clean up cli if/else
+
+ask about cleaning up Freshies::Current.print
+
+ask about how to clear the terminal between menus
+
+ask about while input != exit
+
+current_hash = 
+{"dt"=>1607408030,
+ "sunrise"=>1607350309,
+ "sunset"=>1607384433,
+ "temp"=>28.69,
+ "feels_like"=>21.29,
+ "pressure"=>1037,
+ "humidity"=>12,
+ "dew_point"=>-13.09,
+ "uvi"=>0,
+ "clouds"=>1,
+ "visibility"=>10000,
+ "wind_speed"=>1.03,
+ "wind_deg"=>300,
+ "weather"=>[{"id"=>800, "main"=>"Clear", "description"=>"clear sky", "icon"=>"01n"}]}
+
+ future hash=
+ [{"dt"=>1607364000,
+  "sunrise"=>1607350309,
+  "sunset"=>1607384433,
+  "temp"=>{"day"=>35.28, "min"=>15.71, "max"=>36.28, "night"=>28.74, "eve"=>22.59, "morn"=>16.54},
+  "feels_like"=>{"day"=>31.26, "night"=>21.02, "eve"=>16.61, "morn"=>9.84},
+  "pressure"=>1028,
+  "humidity"=>86,
+  "dew_point"=>30.27,
+  "wind_speed"=>0.67,
+  "wind_deg"=>343,
+  "weather"=>[{"id"=>800, "main"=>"Clear", "description"=>"clear sky", "icon"=>"01d"}],
+  "clouds"=>0,
+  "pop"=>0,
+  "uvi"=>2.49},
+:

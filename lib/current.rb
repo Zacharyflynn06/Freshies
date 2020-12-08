@@ -1,9 +1,5 @@
 class Freshies::Current
 
-    # attr_reader :time, :name, :temp, :feels_like, :conditions
-
-    @@all = []
-
     def initialize(name, current_hash)
         @name = name
         @conditions = current_hash["weather"][0]["main"]
@@ -12,42 +8,36 @@ class Freshies::Current
             self.send(("#{key}="), value)
         end
         @time = Time.at(@dt).strftime('%I:%M %p')
-        save
+        print
+
+        # binding.pry
+
     end
 
     def print
         puts "-----------------------------------------------"
-        puts "Today in #{@name} at #{@time}"
+        puts "Heres the current weather today in #{@name} at #{@time}"
+        puts "The sun will rise at #{Time.at(@sunrise).strftime('%I:%M %p')}"
         puts "-----------------------------------------------"
+        #sleep(2)
         puts "The current temperature in #{@name} is #{@temp}°F"
         puts "With windchill, it feels like #{@feels_like}°F"
         puts "There is #{@humidity}% humidity."
         puts "-----------------------------------------------"
+        #sleep(2)
         puts "There is currently #{@conditions} conditions."
         puts "The visibility is #{@visibility}m, with a UV index of #{@uvi}"
         puts "The wind is blowing #{@wind_speed}mph"
         puts "-----------------------------------------------"
+        #sleep(2)
         if @conditions == "Snow"
             puts "-----------------------------------------------"
-            puts "YOU FOUND THE FRESHIES!!!"
+            puts "YOU FOUND THE FRESHIES!!!".colorize(:light_blue)
             puts "-----------------------------------------------"
         else
             puts "-----------------------------------------------"
-            puts "NO FRESHIES TODAY"
+            puts "SORRY, THERE'S NO FRESHIES in #{@name} TODAY".upcase.colorize(:light_blue)
             puts "-----------------------------------------------"
         end
     end
-
-    def save
-        @@all << self
-    end
-
-    def self.all
-        @@all
-    end
-
-    def self.delete_all
-        @@all.clear
-    end
-
 end
