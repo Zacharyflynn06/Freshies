@@ -1,17 +1,16 @@
 
 class Freshies::CLI
 
-    LOCATIONS = ["Breckenridge",
-        "Telluride",
-        "Keystone",
-        "Crested Butte", 
-        "Vail",
-        "Aspen",
-        "Steamboat",
-        "Copper",
-        "Winter Park",
-        "Beaver Creak"  
-    ]
+   LOCATIONS = ["Breckenridge",
+                 "Telluride",
+                 "Keystone",
+                 "Crested Butte", 
+                 "Vail", 
+                 "Aspen",
+                 "Steamboat",
+                 "Copper",
+                 "Winter Park",
+                 "Beaver Creak"]
             
     $prompt = TTY::Prompt.new
 
@@ -32,10 +31,15 @@ class Freshies::CLI
         puts "_______________________________________________".colorize(:light_blue)
         puts ""
 
+        
+
         input = $prompt.select("Which Ski Area Do You Want To Check?", LOCATIONS)
         
+        system "clear"
+
         if input == "Breckenridge"
-            Freshies::API.new.current_forecast_for("Breckenridge", 39.4803, -106.066)
+            Freshies::API.new
+            # Freshies::API.new.current_forecast_for("Breckenridge", 39.4803, -106.066)
             Freshies::API.new.daily_forecast_for("Breckenridge", 39.4803, -106.066)
         elsif input == "Telluride"
             Freshies::API.new.current_forecast_for("Telluride", 37.9363, -107.8466)
@@ -65,6 +69,7 @@ class Freshies::CLI
             Freshies::API.new.current_forecast_for("Beaver Creek", 39.6042, -106.5165)
             Freshies::API.new.daily_forecast_for("Beaver Creek", 39.6042, -106.5165)
         end
+        
     end
 
     def goodbye
