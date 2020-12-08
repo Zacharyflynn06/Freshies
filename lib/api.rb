@@ -1,12 +1,22 @@
 class Freshies::API
-    INITIAL_URL = "http://api.openweathermap.org/data/2.5/onecall?"
 
-    def forecast(name, lat, lon)
+    def initialize
+        @initial_url = "http://api.openweathermap.org/data/2.5/onecall?"
+    end
+
+    def current_forecast_for(name, lat, lon)
         @name = name
         uri = forecast_uri_for(lat, lon)
         response = Net::HTTP.get_response(uri)
         data = JSON.parse(response.body)
         create_new_current(data)
+    end
+
+    def daily_forecast_for(name, lat, lon)
+        @name = name
+        uri = forecast_uri_for(lat, lon)
+        response = Net::HTTP.get_response(uri)
+        data = JSON.parse(response.body)
         create_new_future(data)
     end
 
@@ -18,7 +28,7 @@ class Freshies::API
             lon: lon,
             exclude: "minutely"
         }
-        uri = URI(INITIAL_URL)
+        uri = URI(@initial_url)
         uri.query = URI.encode_www_form(parameters)
         uri
     end
