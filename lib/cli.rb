@@ -30,47 +30,58 @@ class Freshies::CLI
         puts "                  Main Menu                    ".colorize(:blue)
         puts "_______________________________________________".colorize(:light_blue)
         puts ""
-
-        
+        Freshies::API.new
 
         input = $prompt.select("Which Ski Area Do You Want To Check?", LOCATIONS)
-        
-        system "clear"
 
-        if input == "Breckenridge"
-            Freshies::API.new
-            # Freshies::API.new.current_forecast_for("Breckenridge", 39.4803, -106.066)
-            Freshies::API.new.daily_forecast_for("Breckenridge", 39.4803, -106.066)
-        elsif input == "Telluride"
-            Freshies::API.new.current_forecast_for("Telluride", 37.9363, -107.8466)
-            Freshies::API.new.daily_forecast_for("Telluride", 37.9363, -107.8466)
-        elsif input ==  "Keystone"
-            Freshies::API.new.current_forecast_for("Keystone", 39.6084, -105.9437)
-            Freshies::API.new.daily_forecast_for("Keystone", 39.6084, -105.9437)
-        elsif input ==  "Crested Butte"
-            Freshies::API.new.current_forecast_for("Crested Butte", 38.8697, -106.9878)
-            Freshies::API.new.daily_forecast_for("Crested Butte", 38.8697, -106.9878)
-        elsif input ==  "Vail"
-            Freshies::API.new.current_forecast_for("Vail", 39.6403, -106.3742)
-            Freshies::API.new.daily_forecast_for("Vail", 39.6403, -106.3742)
-        elsif input ==  "Aspen"
-            Freshies::API.new.current_forecast_for("Aspen", 39.1911, -106.8175)
-            Freshies::API.new.daily_forecast_for("Aspen", 39.1911, -106.8175)
-        elsif input ==  "Steamboat"
-            Freshies::API.new.current_forecast_for("Steamboat", 40.4572, -106.8045)
-            Freshies::API.new.daily_forecast_for("Steamboat", 40.4572, -106.8045)
-        elsif input ==  "Copper"
-            Freshies::API.new.current_forecast_for("Copper", 39.5022, -106.1497)
-            Freshies::API.new.daily_forecast_for("Copper", 39.5022, -106.1497)
-        elsif input ==  "Winter Park"
-            Freshies::API.new.current_forecast_for("Winter Park", 39.8917, -105.7631)
-            Freshies::API.new.daily_forecast_for("Winter Park", 39.8917, -105.7631)
-        elsif input ==  "Beaver Creek"
-            Freshies::API.new.current_forecast_for("Beaver Creek", 39.6042, -106.5165)
-            Freshies::API.new.daily_forecast_for("Beaver Creek", 39.6042, -106.5165)
-        end
+        current_response_for(input)
         
+        # system "clear"
     end
+
+    def current_response_for(input)
+        object = Freshies::Current.find_by_name(input)
+        print_current_for(object[0])
+    end
+
+    def print_current_for(city)
+        puts "_______________________________________________".colorize(:light_blue)
+        puts ""
+        puts "             #{city.name} Ski Resort               ".colorize(:light_blue)
+        puts "_______________________________________________".colorize(:light_blue)
+        puts ""
+        puts "Here's today's weather for #{city.name} at #{city.time}"
+        puts "The sunrise is at #{Time.at(city.sunrise).strftime('%I:%M %p')}"
+        puts "The sunset is at #{Time.at(city.sunset).strftime('%I:%M %p')}"
+        puts "-----------------------------------------------"
+        puts "The current temperature in #{city.name} is #{city.temp}°F"
+        puts "With windchill, it feels like #{city.feels_like}°F"
+        puts "There is #{city.humidity}% humidity."
+        puts "-----------------------------------------------"
+        puts "There is currently #{city.weather[0]["main"]} conditions."
+        puts "The visibility is #{city.visibility}m, with a UV index of #{city.uvi}"
+        puts "The wind is blowing #{city.wind_speed}mph"
+        puts "-----------------------------------------------"
+        sleep(2)
+        if city.weather[0]["main"] == "Snow"
+            puts "YOU FOUND THE FRESHIES!!!".colorize(:light_blue)
+            puts "-----------------------------------------------"
+        else
+            puts "SORRY, THERE'S NO FRESHIES in #{city.name} TODAY".upcase.colorize(:light_blue)
+        end
+
+    end
+
+    def print_future_for(city)
+        puts "_______________________________________________".colorize(:light_blue)
+        puts ""
+        puts "             #{@name} 7 Day Forecast           ".colorize(:blue)
+        puts "_______________________________________________".colorize(:light_blue)
+        puts ""
+        puts "Day     Date   Time     Temp Min/Max   Conditions"
+        sleep(3)
+    end
+
 
     def goodbye
         puts "_______________________________________________".colorize(:light_blue)
@@ -95,5 +106,4 @@ class Freshies::CLI
         end 
         goodbye
     end
-
 end

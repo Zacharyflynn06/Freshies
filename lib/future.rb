@@ -8,6 +8,14 @@ class Freshies::Future
         @conditions = conditions
         print
     end
+
+    def save
+        @@all << self
+    end
+
+    def self.all
+        @all
+    end
     
     def print
         puts "_______________________________________________".colorize(:light_blue)

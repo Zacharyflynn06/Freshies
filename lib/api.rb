@@ -1,6 +1,6 @@
 class Freshies::API
 
-    @initial_url = "http://api.openweathermap.org/data/2.5/onecall?"
+    INITIAL = "http://api.openweathermap.org/data/2.5/onecall?"
     LOCATIONS = {:breckenridge => [39.4803, -106.0667],
                  :telluride => [37.9363, -107.8466],
                  :keystone => [39.6084, -105.9437],
@@ -13,31 +13,34 @@ class Freshies::API
                  :beaver_creek => [39.6042, -106.5165]}
 
     def initialize
-        @initial_url = "http://api.openweathermap.org/data/2.5/onecall?"
         LOCATIONS.each do |k, v|
-            binding.pry
             current_forecast_for(k, v[0], v[1])
-            puts "hello"
         end
-            
-        
-    end
-    # binding.pry
-    def current_forecast_for(name, lat, lon)
-        @name = name.to_s.capitalize
-        uri = forecast_uri_for(lat, lon)
-        response = Net::HTTP.get_response(uri)
-        data = JSON.parse(response.body)
-        create_new_current(data)
     end
 
-    def daily_forecast_for(name, lat, lon)
-        @name = name
+    def current_forecast_for(name, lat, lon)
         uri = forecast_uri_for(lat, lon)
         response = Net::HTTP.get_response(uri)
         data = JSON.parse(response.body)
-        create_new_future(data)
+        Freshies::Current.new(name.to_s.capitalize, data["current"])#name
+                            # data["current"]["dt"], #time
+                            # data["current"]["temp"], #temp
+                            # data["current"]["feels_like"], #feels_like
+                            # data["current"]["weather"][0]["main"], #conditions
+                            # data["current"]["sunrise"],
+                            # data["current"]["sunset"],
+                            # )
+                
+
     end
+
+    # def daily_forecast_for(name, lat, lon)
+    #     @name = name
+    #     uri = forecast_uri_for(lat, lon)
+    #     response = Net::HTTP.get_response(uri)
+    #     data = JSON.parse(response.body)
+    #     create_new_future(data)
+    # end
 
     def forecast_uri_for(lat, lon)
         parameters = {
@@ -47,24 +50,20 @@ class Freshies::API
             lon: lon,
             exclude: "minutely"
         }
-        uri = URI(@initial_url)
+        uri = URI(INITIAL)
         uri.query = URI.encode_www_form(parameters)
         uri
     end
 
-    def create_new_current(data)
-        Freshies::Current.new(@name, data["current"])
-    end
-
-    def create_new_future(data)
-        data["daily"].each do |day|
-            Freshies::Future.new(
-                @name, #name
-                day["dt"], #date
-                day["temp"]["min"], #min
-                day["temp"]["max"], #max
-                day["weather"][0]["main"]#conditions
-            )
-        end
-    end
+    # def create_new_future(data)
+    #     data["daily"].each do |day|
+    #         Freshies::Future.new(
+    #             @name, #name
+    #             day["dt"], #date
+    #             day["temp"]["min"], #min
+    #             day["temp"]["max"], #max
+    #             day["weather"][0]["main"]#conditions
+    #         )
+    #     end
+    # end
 end
