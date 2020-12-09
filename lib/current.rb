@@ -10,7 +10,7 @@ class Freshies::Current
           self.send(("#{key}="), value)
         end
         @time = Time.at(self.dt).strftime('%I:%M %p')
-        @name = name
+        @name = name.to_s.gsub("_", " ")
         save
     end
     

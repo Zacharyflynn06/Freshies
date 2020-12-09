@@ -1,7 +1,7 @@
 
 class Freshies::CLI
 
-   LOCATIONS = ["Breckenridge",
+   LOCATIONS_MENU = ["Breckenridge",
                  "Telluride",
                  "Keystone",
                  "Crested Butte", 
@@ -10,7 +10,7 @@ class Freshies::CLI
                  "Steamboat",
                  "Copper",
                  "Winter Park",
-                 "Beaver Creak"]
+                 "Beaver Creek"]
             
     $prompt = TTY::Prompt.new
 
@@ -21,7 +21,9 @@ class Freshies::CLI
         puts "        Lets find the freshest snow!".colorize(:light_blue)
         puts "_______________________________________________".colorize(:light_blue)
         puts ""
-        sleep(2)
+        puts "                  loading..."
+        Freshies::API.new
+        system "clear"
     end
 
     def menu
@@ -30,13 +32,10 @@ class Freshies::CLI
         puts "                  Main Menu                    ".colorize(:blue)
         puts "_______________________________________________".colorize(:light_blue)
         puts ""
-        Freshies::API.new
 
-        input = $prompt.select("Which Ski Area Do You Want To Check?", LOCATIONS)
+        input = $prompt.select("Which Ski Area Do You Want To Check?", LOCATIONS_MENU)
 
         current_response_for(input)
-        
-        # system "clear"
     end
 
     def current_response_for(input)
@@ -101,6 +100,7 @@ class Freshies::CLI
         end
         input = $prompt.yes?("Do you want to check another city?")
         while input
+            system "clear"
             menu
             input = $prompt.yes?("Do you want to check another city?")
         end 
