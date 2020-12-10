@@ -23,6 +23,7 @@ class Freshies::CLI
         puts ""
         puts "                  loading..."
         Freshies::API.new
+        # binding.pry
         system "clear"
     end
 
@@ -35,12 +36,14 @@ class Freshies::CLI
 
         input = $prompt.select("Which Ski Area Do You Want To Check?", LOCATIONS_MENU)
 
-        current_response_for(input)
+        response_for(input)
     end
 
-    def current_response_for(input)
-        object = Freshies::Current.find_by_name(input)
-        print_current_for(object[0])
+    def response_for(city)
+        current_object = Freshies::Current.find_by_name(city)
+        print_current_for(current_object[0])
+        forecast_object = Freshies::Forecast.find_by_name(city)
+        print_forecast_for(forecast_object)
     end
 
     def print_current_for(city)
@@ -71,15 +74,27 @@ class Freshies::CLI
 
     end
 
-    def print_future_for(city)
-        puts "_______________________________________________".colorize(:light_blue)
-        puts ""
-        puts "             #{@name} 7 Day Forecast           ".colorize(:blue)
-        puts "_______________________________________________".colorize(:light_blue)
-        puts ""
-        puts "Day     Date   Time     Temp Min/Max   Conditions"
-        sleep(3)
+    def print_forecast_for(data)
+        data.each do |day|
+            puts "#{Time.at(day.dt).strftime('%A %m-%d %I:%M %p')} / #{day.temp["min"]}°F / #{day.temp["max"]}  / #{day.weather[0]["main"]} / #{day.humidity}%"
+        end
     end
+
+    # def scratch
+    #     puts "_______________________________________________".colorize(:light_blue)
+    #     puts ""
+    #     puts "             #{@name} 7 Day Forecast           ".colorize(:blue)
+    #     puts "_______________________________________________".colorize(:light_blue)
+    #     puts ""
+    #     puts "Day     Date   Time     Temp Min/Max   Conditions"
+    #     sleep(3)
+        
+    #     puts "_______________________________________________".colorize(:light_blue)
+    #     # puts "#{city.data[0]["dt"]).strftime('%A %m-%d %I:%M %p')} #{@min}°F/#{@max}°F #{@conditions}"
+    #     if @conditions == "Snow"
+    #         puts "FRESHIES FORECASTED FOR #{Time.at(@date).strftime('%A').upcase}".colorize(:light_blue)
+    #     end
+    # end
 
 
     def goodbye
@@ -93,10 +108,13 @@ class Freshies::CLI
     end
 
     def run
+        system "clear"
         welcome
         input = $prompt.yes?("Do you want to find the FRESHIES?")
         if input
             menu
+        else
+            goodbye
         end
         input = $prompt.yes?("Do you want to check another city?")
         while input

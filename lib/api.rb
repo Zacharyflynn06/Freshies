@@ -24,16 +24,8 @@ class Freshies::API
         data = JSON.parse(response.body)
         data["name"] = city
         Freshies::Current.new(city, data["current"])
-        # binding.pry
+        Freshies::Forecast.new(city, data["daily"])
     end
-
-    # def daily_forecast_for(name, lat, lon)
-    #     @name = name
-    #     uri = forecast_uri_for(lat, lon)
-    #     response = Net::HTTP.get_response(uri)
-    #     data = JSON.parse(response.body)
-    #     create_new_future(data)
-    # end
 
     def forecast_uri_for(lat, lon)
         parameters = {
@@ -48,10 +40,10 @@ class Freshies::API
         uri
     end
 
-    # def create_new_future(data)
+    # def create_new_future(city, data)
     #     data["daily"].each do |day|
     #         Freshies::Future.new(
-    #             @name, #name
+    #             city, #name
     #             day["dt"], #date
     #             day["temp"]["min"], #min
     #             day["temp"]["max"], #max

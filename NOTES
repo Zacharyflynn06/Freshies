@@ -60,3 +60,26 @@ current_hash =
 :
 
 system "clear"
+
+[1] pry(#<Freshies::CLI>)> data
+=> [#<Freshies::Day:0x000055985e29a918
+  @clouds=100,
+  @dew_point=14.9,
+  @dt=1607623200,
+  @feels_like={"day"=>26.46, "night"=>9.99, "eve"=>19.49, "morn"=>12.4},
+  @forecast=#<Freshies::Forecast:0x000055985e29a9b8 @city="Breckenridge">,
+  @humidity=83,
+  @pop=0.94,
+  @pressure=1013,
+  @snow=1.56,
+  @sunrise=1607609658,
+  @sunset=1607643642,
+  @temp={"day"=>31.59, "min"=>17.13, "max"=>32.25, "night"=>17.13, "eve"=>26.04, "morn"=>19.33},
+  @uvi=1.59,
+  @weather=[{"id"=>601, "main"=>"Snow", "description"=>"snow", "icon"=>"13d"}],
+  @wind_deg=127,
+  @wind_speed=1.59>,
+ #<Freshies::Day:0x000055985e29f558
+  @clouds=100,
+  @dew_point=13.24,
+  @dt=1607709600,
