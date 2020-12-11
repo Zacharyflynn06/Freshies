@@ -14,7 +14,7 @@ class Freshies::Forecast
             x.forecast = self
         end
     end 
-
+ 
     def self.find_by_name(name)
         Freshies::Day.all.select {|day| day.forecast.name == name}
     end

@@ -13,7 +13,7 @@ class Freshies::CLI
                     "Winter Park,"]
             
     $prompt = TTY::Prompt.new
-
+ 
     def welcome
         puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""

@@ -6,7 +6,7 @@ require 'dotenv/load'
 require 'awesome_print'
 require 'tty-prompt'
 require 'colorize'
-
+ 
 require_relative '../lib/modules/freshies'
 require_relative '../lib/api'
 require_relative '../lib/current'

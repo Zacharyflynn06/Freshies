@@ -11,7 +11,7 @@ class Freshies::API
                  :Copper => [39.5022, -106.1497],
                  :Winter_Park => [39.8917, -105.7631],
                  :Beaver_Creek => [39.6042, -106.5165]}
-
+ 
     def initialize
         LOCATIONS.each do |k, v|
             current_forecast_for(k, v[0], v[1])

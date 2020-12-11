@@ -12,7 +12,7 @@ class Freshies::Day
         end
         save
     end
-
+ 
     def save
         @@all << self
     end

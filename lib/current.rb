@@ -12,7 +12,7 @@ class Freshies::Current
         @name = name.to_s.gsub("_", " ")
         save
     end
-    
+     
     def save
         @@all << self
     end
