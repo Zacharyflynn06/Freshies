@@ -30,7 +30,13 @@ Run bundle install in your terminal to install all required gems.
 
 ## Authorization
 
-The user will need a FREE API key to use *Freshies*, which can be found by navigating [here](https://openweathermap.org/price). The user will select Get API Key under the Free heading.  Then you will be prompted to set up an account and given an API key. 
+The user will need a FREE API key to use *Freshies*, which can be found by navigating [here](https://openweathermap.org/price). 
+
+The user will select Get API Key under the Free heading.  Then you will be prompted to set up an account and given an API key. 
+
+Once you have your API key, create a .env file by typing `mkdir .env` in your terminal.
+
+Then, add your API key to the .env file as demonstrated: API_KEY= "your key here"
 
 ## Initialization
 
