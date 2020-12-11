@@ -2,14 +2,13 @@ class Freshies::Current
 
     @@all = []
 
-    attr_accessor :name, :time
+    attr_accessor :name
 
     def initialize(name, attributes)
         attributes.each do |key, value| 
           self.class.attr_accessor(key)
           self.send(("#{key}="), value)
-        end
-        @time = Time.at(self.dt).strftime('%I:%M %p')
+        end 
         @name = name.to_s.gsub("_", " ")
         save
     end

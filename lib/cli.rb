@@ -1,16 +1,16 @@
 
 class Freshies::CLI
 
-   LOCATIONS_MENU = ["Breckenridge",
-                 "Telluride",
-                 "Keystone",
-                 "Crested Butte", 
-                 "Vail", 
-                 "Aspen",
-                 "Steamboat",
-                 "Copper",
-                 "Winter Park",
-                 "Beaver Creek"]
+   LOCATIONS_MENU = ["Aspen",
+                    "Beaver Creek",
+                    "Breckenridge",
+                    "Copper",
+                    "Crested Butte",
+                    "Keystone",
+                    "Steamboat",
+                    "Telluride",
+                    "Vail",
+                    "Winter Park,"]
             
     $prompt = TTY::Prompt.new
 
@@ -36,7 +36,7 @@ class Freshies::CLI
         puts ""
         city_input = $prompt.select("Scroll down and select a Ski-Area to check its conditions!", LOCATIONS_MENU, per_page: 10)
         current_response_for(city_input)
-        second_input = $prompt.yes?("Would you like to see a 7-day forecast?")
+        second_input = $prompt.yes?("Would you like to see a 7-day forecast for #{city_input}?")
         if second_input
             forecast_response_for(city_input)
             check_again
@@ -63,7 +63,7 @@ class Freshies::CLI
         puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
         sleep(1)
-        puts "Here's today's weather for #{city.name} at #{city.time}"
+        puts "Here's today's weather for #{city.name} at #{Time.at(city.dt).strftime('%I:%M %p')}"
         sleep(1)
         puts "The sunrise is at #{Time.at(city.sunrise).strftime('%I:%M %p')}"
         sleep(1)
@@ -79,7 +79,7 @@ class Freshies::CLI
         sleep(1)
         puts "---------------------------------------------------------------------------"
         sleep(1)
-        puts "There is currently #{city.weather[0]["main"]} conditions."
+        puts "There is currently #{city.weather[0]["description"]} conditions."
         sleep(1)
         puts "The visibility is #{city.visibility}m, with a UV index of #{city.uvi}"
         sleep(1)
@@ -88,7 +88,7 @@ class Freshies::CLI
         puts "---------------------------------------------------------------------------"
         sleep(2)
         if city.weather[0]["main"] == "Snow"
-            puts "           YOU FOUND THE FRESHIES".colorize(:light_blue)
+            puts "                       YOU FOUND THE FRESHIES".colorize(:light_blue)
             puts "---------------------------------------------------------------------------"
         else
             puts "SORRY, THERE'S NO FRESHIES in #{city.name} TODAY".upcase.colorize(:light_blue)

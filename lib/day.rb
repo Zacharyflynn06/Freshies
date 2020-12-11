@@ -1,5 +1,4 @@
 class Freshies::Day
-
     #belongs to forecast
 
     @@all = []
