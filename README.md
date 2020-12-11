@@ -2,7 +2,9 @@
 
 ## Welcome to *Freshies* 
 
-Freshies is a user friendly CLI application used to check the conditions at your favorite Colorado Ski Areas. This app uses geographical coordinates to specifically target the specific Ski Area base, and returns weather data as it would pertain to a ski/snowboard enthusiast. 
+Freshies is a user friendly CLI application used to check the weather conditions at your favorite Colorado Ski Areas. 
+
+This app uses geographical coordinates to specifically target popular Ski Area bases, and returns their weather data as it would pertain to a ski/snowboard enthusiast. 
 
 #### *"Freshies"* in ski culture, refers to the coveted fresh snow sought by ski and snowboard enthusiast.
 
