@@ -2,9 +2,9 @@
 
 ## Welcome to *Freshies* 
 
-Freshies is a user friendly CLI application used to check the conditions at your favorite Colorado Ski Areas. This app uses geographical coordinates to specifically target the specific Ski Area base.
+Freshies is a user friendly CLI application used to check the conditions at your favorite Colorado Ski Areas. This app uses geographical coordinates to specifically target the specific Ski Area base, and returns weather data as it would pertain to a ski/snowboard enthusiast. 
 
-#### *"Freshies"* in ski culture, refers to the coveted fresh snow sought by ski and snowboard enthusists.
+#### *"Freshies"* in ski culture, refers to the coveted fresh snow sought by ski and snowboard enthusiast.
 
 ## Usage
 
@@ -28,6 +28,10 @@ ________________________________________________________________________________
 
 Run bundle install in your terminal to install all required gems.
 
+## Authorization
+
+The user will need a FREE API key to use *Freshies*, which can be found by navigating [here](https://openweathermap.org/price). The user will select Get API Key under the Free heading.  Then you will be prompted to set up an account and given an API key. 
+
 ## Initialization
 
 Run bin/freshies in your terminal to begin the program.
@@ -36,7 +40,7 @@ Run bin/freshies in your terminal to begin the program.
 
 Freshies uses the arrow keys and the enter key to browse and select choices.
 
-The yes/no questions can be answered as Y/N or spelled out as yes/no.
+The yes/no questions can be answered as `y/n` or spelled out as `yes/no`.
 
 ## Instructions
 
@@ -44,21 +48,21 @@ After the user installs and initializes the program as described above, they wil
 
 Once loading is complete, the user will be prompted: 
 
-"Scroll down and select a Ski-Area to check its conditions!"
+`Scroll down and select a Ski-Area to check its conditions!`
 
 The user selects which Ski-Area they want to check and is presented with the current conditions at the base of the specified Ski Area.
 
 The user is now prompted:
 
-"Would you like to see a 7-day forecast for #{city_input}?"
+`Would you like to see a 7-day forecast for #{city_input}?`
 
-If yes, the user will be presented with the 7-day forecast for the Ski Area and then be returned to the menu. 
+If `yes`, the user will be presented with the 7-day forecast for the Ski Area and then be returned to the menu. 
 
-If no the user is returned to the menu.
+If `no` the user is returned to the menu.
 
-To exit, simply answer No when prompted:
+To exit, simply answer `no` when prompted:
 
-"Do you want to check another city?"
+`Do you want to check another city?`
 
 At this point, the user is presented a goodbye message, and the terminal clears.
 
