@@ -1,11 +1,10 @@
-#has many Days
-
 class Freshies::Forecast
+    #has many Days
 
-    attr_accessor :city
+    attr_accessor :name
 
-    def initialize(city, data)
-        @city = city.to_s
+    def initialize(name, data)
+        @name = name.to_s.gsub("_", " ")
         create_days(data)
     end
 
@@ -17,15 +16,6 @@ class Freshies::Forecast
     end 
 
     def self.find_by_name(name)
-        Freshies::Day.all.select {|day| day.forecast.city == name}
+        Freshies::Day.all.select {|day| day.forecast.name == name}
     end
-    
-    # def print
-    #     puts "_______________________________________________".colorize(:light_blue)
-    #     puts "#{Time.at(@date).strftime('%A %m-%d %I:%M %p')} #{@min}°F/#{@max}°F #{@conditions}"
-    #     if @conditions == "Snow"
-    #         puts "FRESHIES FORECASTED FOR #{Time.at(@date).strftime('%A').upcase}".colorize(:light_blue)
-    #     end
-    # end
-
 end
