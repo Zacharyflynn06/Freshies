@@ -15,24 +15,24 @@ class Freshies::CLI
     $prompt = TTY::Prompt.new
 
     def welcome
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        puts "                  FRESHIES".colorize(:blue)
+        puts "                                FRESHIES".colorize(:blue)
         puts ""
-        puts "        Lets find the freshest snow!".colorize(:light_blue)
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "                      Lets find the freshest snow!".colorize(:light_blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        puts "                  loading..."
+        puts "                                loading..."
         puts ""
         Freshies::API.new
     end
 
     def menu
         system "clear"
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        puts "                  Main Menu                    ".colorize(:blue)
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "                                Main Menu                    ".colorize(:blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
         city_input = $prompt.select("Scroll down and select a Ski-Area to check its conditions!", LOCATIONS_MENU, per_page: 10)
         current_response_for(city_input)
@@ -56,27 +56,40 @@ class Freshies::CLI
     end
 
     def print_current_for(city)
-        puts "_______________________________________________".colorize(:light_blue)
+        system "clear"
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        puts "             #{city.name} Ski Resort               ".colorize(:light_blue)
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "                              #{city.name} Ski Resort               ".colorize(:light_blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
+        sleep(1)
         puts "Here's today's weather for #{city.name} at #{city.time}"
+        sleep(1)
         puts "The sunrise is at #{Time.at(city.sunrise).strftime('%I:%M %p')}"
+        sleep(1)
         puts "The sunset is at #{Time.at(city.sunset).strftime('%I:%M %p')}"
-        puts "-----------------------------------------------"
+        sleep(1)
+        puts "---------------------------------------------------------------------------"
+        sleep(1)
         puts "The current temperature in #{city.name} is #{city.temp}°F"
+        sleep(1)
         puts "With windchill, it feels like #{city.feels_like}°F"
+        sleep(1)
         puts "There is #{city.humidity}% humidity."
-        puts "-----------------------------------------------"
+        sleep(1)
+        puts "---------------------------------------------------------------------------"
+        sleep(1)
         puts "There is currently #{city.weather[0]["main"]} conditions."
+        sleep(1)
         puts "The visibility is #{city.visibility}m, with a UV index of #{city.uvi}"
+        sleep(1)
         puts "The wind is blowing #{city.wind_speed}mph"
-        puts "-----------------------------------------------"
+        sleep(1)
+        puts "---------------------------------------------------------------------------"
         sleep(2)
         if city.weather[0]["main"] == "Snow"
             puts "           YOU FOUND THE FRESHIES".colorize(:light_blue)
-            puts "-----------------------------------------------"
+            puts "---------------------------------------------------------------------------"
         else
             puts "SORRY, THERE'S NO FRESHIES in #{city.name} TODAY".upcase.colorize(:light_blue)
         end
@@ -84,31 +97,35 @@ class Freshies::CLI
 
     def print_forecast_for(data)
         system "clear"
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        puts "          #{data[0].forecast.name} 7 Day Forecast           ".colorize(:blue)
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "               #{data[0].forecast.name} 7 Day Forecast           ".colorize(:blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        puts "Day     Date   Time     Temp Min/Max   Conditions"
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "Day     Date   Time     Temp Min/Max   Conditions   Chance of Precipitation"
+        puts "___________________________________________________________________________".colorize(:light_blue)
+        puts ""
+        sleep(1)
         data.each do |day|
             puts "#{Time.at(day.dt).strftime('%A %m-%d %I:%M %p')} / #{day.temp["min"]}°F / #{day.temp["max"]}  / #{day.weather[0]["main"]} / #{day.humidity}%"
             if day.weather[0]["main"] == "Snow"
-                puts "FRESHIES forecasted for #{Time.at(day.dt).strftime('%A').upcase}!".colorize(:blue)
+                puts "FRESHIES ".colorize(:blue) + "forecasted for #{Time.at(day.dt).strftime('%A').upcase}!"
             else
                 puts "Sorry, no" + " FRESHIES ".colorize(:blue) + "on #{Time.at(day.dt).strftime('%A')}"
             end
+            puts ""
+            sleep(1)
         end
     end
 
     def goodbye
         system "clear"
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        puts "                 Thanks for using".colorize(:light_blue)
-        puts "                     FRESHIES".colorize(:light_blue)
-        puts "                  Enjoy the Snow".colorize(:light_blue)
-        puts "_______________________________________________".colorize(:light_blue)
+        puts "                              Thanks for using".colorize(:light_blue)
+        puts "                                  FRESHIES".colorize(:light_blue)
+        puts "                              Enjoy the Snow".colorize(:light_blue)
+        puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
         sleep(3)
         clear_screen
@@ -134,8 +151,9 @@ class Freshies::CLI
         welcome
         input = $prompt.yes?("Do you want to find the FRESHIES?")
         if input
-            system "clear"
             menu
+        else
+            goodbye
         end
     end    
 end
