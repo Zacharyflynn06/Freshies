@@ -48,6 +48,12 @@ After the user installs and initializes the program as described above, they wil
 
 Once loading is complete, the user will be prompted: 
 
+`Do you want to find the freshies?`
+
+If `no`, the user will be presented with the goodbye message and exit the program.
+
+If `yes` the user will be prompted:
+
 `Scroll down and select a Ski-Area to check its conditions!`
 
 The user selects which Ski-Area they want to check and is presented with the current conditions at the base of the specified Ski Area.
