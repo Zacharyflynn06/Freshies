@@ -1,30 +1,22 @@
 
 User selects CO ski-area from list
--1. Breckenridge (80424), 39.4803° N, -106.0667
--2. Telluride (81435), 37.9363, -107.8466
--3. Keystone (80435), 39.6084, -105.9437
--4. Crested Butte (81224) 38.8697, -106.9878
--5. Vail (81657) 39.6403, -106.3742
--6. Aspen (81611) 39.1911, -106.8175
--7. Steamboat (80477) 40.4572, -106.8045
--8. Copper (80443) 39.5022, -106.1497
--9. Winter Park (80482) 39.8917, -105.7631
--10. Beaver Creak (81620) 39.6042, -106.5165
+-1. Breckenridge
+
+-2. Telluride
+-3. Keystone
+-4. Crested Butte 
+-5. Vail
+-6. Aspen
+-7. Steamboat
+-8. Copper
+-9. Winter Park
+-10. Beaver Creak
 
 Returns 
 -current conditions
 -48 hour forecast
 
 
-Do i need modules?
-
-ask how to clean up cli if/else
-
-ask about cleaning up Freshies::Current.print
-
-ask about how to clear the terminal between menus
-
-ask about while input != exit
 
 current_hash = 
 {"dt"=>1607408030,
