@@ -10,7 +10,7 @@ class Freshies::CLI
                     "Steamboat",
                     "Telluride",
                     "Vail",
-                    "Winter Park,"]
+                    "Winter Park"]
             
     $prompt = TTY::Prompt.new
  
