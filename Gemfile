@@ -8,4 +8,4 @@ gem 'dotenv'
 gem 'awesome_print'
 gem 'tty-prompt'
 gem 'colorize'
- 
+  
