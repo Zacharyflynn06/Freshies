@@ -39,16 +39,4 @@ class Freshies::API
         uri.query = URI.encode_www_form(parameters)
         uri
     end
-
-    # def create_new_future(city, data)
-    #     data["daily"].each do |day|
-    #         Freshies::Future.new(
-    #             city, #name
-    #             day["dt"], #date
-    #             day["temp"]["min"], #min
-    #             day["temp"]["max"], #max
-    #             day["weather"][0]["main"]#conditions
-    #         )
-    #     end
-    # end
 end
