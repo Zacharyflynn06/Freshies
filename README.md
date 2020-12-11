@@ -11,7 +11,7 @@ Freshies is a user friendly CLI application used to check the conditions at your
 This app allows the User to quickly compare conditions at ten of the countries leading ski resorts:
 
 - Aspen
-- Beaver Creak
+- Beaver Creek
 - Breckenridge
 - Copper
 - Crested Butte 
