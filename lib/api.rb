@@ -1,6 +1,7 @@
 class Freshies::API
 
     INITIAL = "http://api.openweathermap.org/data/2.5/onecall?"
+
     LOCATIONS = {:Breckenridge => [39.4803, -106.0667],
                  :Telluride => [37.9363, -107.8466],
                  :Keystone => [39.6084, -105.9437],
@@ -14,20 +15,19 @@ class Freshies::API
  
     def initialize
         LOCATIONS.each do |k, v|
-            current_forecast_for(k, v[0], v[1])
+            api_call_for(k, v[0], v[1])
         end
     end
 
-    def current_forecast_for(city, lat, lon)
-        uri = forecast_uri_for(lat, lon)
+    def api_call_for(city, lat, lon)
+        uri = uri_for(lat, lon)
         response = Net::HTTP.get_response(uri)
         data = JSON.parse(response.body)
-        data["name"] = city
         Freshies::Current.new(city, data["current"])
         Freshies::Forecast.new(city, data["daily"])
     end
 
-    def forecast_uri_for(lat, lon)
+    def uri_for(lat, lon)
         parameters = {
             units: "imperial",
             appid: "#{ENV['API_KEY']}",
@@ -39,4 +39,5 @@ class Freshies::API
         uri.query = URI.encode_www_form(parameters)
         uri
     end
+
 end
