@@ -9,12 +9,12 @@ class Freshies::Current
           self.class.attr_accessor(key)
           self.send(("#{key}="), value)
         end 
-        @name = name.to_s.gsub("_", " ")
+        self.name = name.to_s.gsub("_", " ")
         save
     end
      
     def save
-        @@all << self
+        self.class.all << self
     end
 
     def self.all
@@ -22,6 +22,6 @@ class Freshies::Current
     end
 
     def self.find_by_name(name)
-        self.all.select {|x| x.name == name}
+        all.select {|x| x.name == name}
     end
 end

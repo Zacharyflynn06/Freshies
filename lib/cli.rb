@@ -12,7 +12,7 @@ class Freshies::CLI
                     "Vail",
                     "Winter Park"]
             
-    $prompt = TTY::Prompt.new
+    @@prompt = TTY::Prompt.new
  
     def welcome
         puts "___________________________________________________________________________".colorize(:light_blue)
@@ -34,9 +34,9 @@ class Freshies::CLI
         puts "                                Main Menu                    ".colorize(:blue)
         puts "___________________________________________________________________________".colorize(:light_blue)
         puts ""
-        city_input = $prompt.select("Scroll down and select a Ski-Area to check its conditions!", LOCATIONS_MENU, per_page: 10)
+        city_input = @@prompt.select("Scroll down and select a Ski-Area to check its conditions!", LOCATIONS_MENU, per_page: 10)
         current_response_for(city_input)
-        second_input = $prompt.yes?("Would you like to see a 7-day forecast for #{city_input}?")
+        second_input = @@prompt.yes?("Would you like to see a 7-day forecast for #{city_input}?")
         if second_input
             forecast_response_for(city_input)
             check_again
@@ -138,7 +138,7 @@ class Freshies::CLI
     end
 
     def check_again 
-        input = $prompt.yes?("Do you want to check another city?")
+        input = @@prompt.yes?("Do you want to check another city?")
         if input
             menu
         else
@@ -149,7 +149,7 @@ class Freshies::CLI
     def run
         system "clear"
         welcome
-        input = $prompt.yes?("Do you want to find the FRESHIES?")
+        input = @@prompt.yes?("Do you want to find the FRESHIES?")
         if input
             menu
         else
